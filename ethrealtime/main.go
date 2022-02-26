@@ -50,8 +50,8 @@ func clientInit() {
 		//client, err = ethclient.Dial("wss://mainnet.infura.io/ws/v3/e2469954ed8248698d0c6d10d1127dd2")
 		//韩国
 		//client, err = ethclient.Dial("ws://138.113.235.159:8546")
-		//深圳
-		client, err = ethclient.Dial("ws://183.60.141.2:8546")
+		//深圳 ws://183.60.141.2:8546
+		client, err = ethclient.Dial("ws://138.113.235.159:854")
 		if err != nil {
 			time.Sleep(5 * time.Second)
 			log.Println("client_err:", err)
