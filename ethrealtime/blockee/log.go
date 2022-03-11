@@ -15,8 +15,8 @@ type Log struct {
 
 	// supplied by the contract, usually ABI-encoded
 	// 事件额外的数据
-	Data []byte `json:"data" gencodec:"required"`
-
+	//Data []byte `json:"data" gencodec:"required"`
+	Data string `json:"data" gencodec:"required"`
 	// Derived fields. These fields are filled in by the node
 	// but not secured by consensus.
 	// block in which the transaction was included
@@ -39,9 +39,14 @@ type Log struct {
 	// 日志索引
 	Index uint `json:"logIndex"`
 
-	Time uint64 `json:"time"`
+	Time uint64 `json:"timeStamp"`
+
 	// The Removed field is true if this log was reverted due to a chain reorganisation.
 	// You must pay attention to this field if you receive logs through a filter query.
-	//Removed bool `json:"removed"`
-	ERC20Tokens []ERC20Token `json:"erc20tokens"`
+	Removed bool `json:"removed"`
+
+	ERCTokens []ERCToken `json:"erctokens"`
+	ERCType string `json:"ercType"`
+
+
 }

@@ -8,9 +8,11 @@ import (
 	"math/big"
 	"os"
 	"strconv"
+	"time"
 )
 
 var Bolckfilelist map[int64]bool
+var StatusMap map[int64]bool
 
 func MaxblockNumber(fil_path string) *big.Int {
 	Bolckfilelist=make(map[int64]bool)
@@ -98,8 +100,6 @@ func CreatedJSONLogs(file_path string, name string, res []byte) {
 
 
 func FileWrite(file_path string, name string, res []byte) {
-	//fmt.Println("logs-------------",res)
-	//filePath := name
 	pathFile := fmt.Sprintf("%s/%s.json", file_path, name)
 	file, err := os.OpenFile(pathFile, os.O_WRONLY|os.O_APPEND, 0666)
 	defer file.Close()
@@ -111,8 +111,17 @@ func FileWrite(file_path string, name string, res []byte) {
 
 	//写入文件时，使用带缓存的 *Writer
 	write := bufio.NewWriter(file)
+	//write.Write(res)
 	write.WriteString("["+string(res)+"]"+"\n")
 	//Flush将缓存的文件真正写入到文件中
 	write.Flush()
+}
+
+func StatusMonitoring(number int64)  {
+	time.Sleep(3*60*time.Second)
+	if !StatusMap[number] {
+		fmt.Println("区块:",number," -运行超时-:")
+		os.Exit(0)
+	}
 }
 
