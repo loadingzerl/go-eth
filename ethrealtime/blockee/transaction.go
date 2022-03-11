@@ -25,20 +25,18 @@ type Transaction struct {
 
 	Logs []Log `json:"logs"`
 
-
-	ContractAddress common.Address`json:"txnContractAddress"`
-	Size common.StorageSize `json:"size"`
-	TxnType uint8 `json:"txnType"`
-	TxnStatus uint64 `json:"txnStatus"`
-	ChainId *big.Int `json:"chainId"`
-	PostState  string `json:"txnPostState"`
-	MaxPriority *big.Int `json:"txnMaxPriority"` //gasprice - GasFeeCap
-	GasTipCap *big.Int `json:"txnGasTipCap"`
-	GasFeeCap *big.Int `json:"txnGasFeeCap"`
-	CumulativeGasUsed uint64 `json:"txnCumulativeGasUsed"`
-	TransactionIndex uint `json:"txnTransactionIndex"`
-	AccessList types.AccessList `json:"txnAccessList"`
-	TxnGasUsed  uint64`json:"txGasUsed"`
-
-
+	ContractAddress   common.Address     `json:"txnContractAddress"`
+	Size              common.StorageSize `json:"size"`
+	TxnType           uint8              `json:"txnType"`
+	TxnStatus         uint64             `json:"txnStatus"`
+	ChainId           *big.Int           `json:"chainId"`
+	PostState         string             `json:"txnPostState"`
+	MaxPriority       *big.Int           `json:"txnMaxPriority"` //gasprice - GasFeeCap
+	GasTipCap         *big.Int           `json:"txnGasTipCap"`
+	GasFeeCap         *big.Int           `json:"txnGasFeeCap"`
+	CumulativeGasUsed uint64             `json:"txnCumulativeGasUsed"`
+	TransactionIndex  uint               `json:"txnTransactionIndex"`
+	AccessList        types.AccessList   `json:"txnAccessList"`
+	//txgasUsd
+	TxnGasUsed uint64 `json:"txGasUsed"`
 }
