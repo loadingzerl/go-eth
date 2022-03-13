@@ -37,6 +37,7 @@ func ClientInit() {
 
 //timeBlock
 func BlockTime() {
+	ClientInit()
 	ut_tool.StatusMap = make(map[int64]bool)
 	headers := make(chan *types.Header)
 	sub, err := client.SubscribeNewHead(context.Background(), headers)

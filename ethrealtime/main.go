@@ -5,6 +5,5 @@ import (
 )
 
 func main() {
-	service.ClientInit()
 	service.BlockTime()
 }
