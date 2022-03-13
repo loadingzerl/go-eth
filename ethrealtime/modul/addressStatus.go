@@ -1,4 +1,4 @@
-package blockee
+package modul
 
 import (
 	"context"

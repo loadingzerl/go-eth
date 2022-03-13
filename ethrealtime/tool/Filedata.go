@@ -3,8 +3,8 @@ package ut_tool
 import (
 	"bufio"
 	"encoding/json"
-	"ethernum/blockee"
 	"ethernum/filepath"
+	"ethernum/modul"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -127,7 +127,7 @@ func StatusMonitoring(number int64) {
 	}
 }
 
-func BlockWriteFile(block *blockee.Block, txlogs []*blockee.Log, addressMap []*blockee.Address) {
+func BlockWriteFile(block *modul.Block, txlogs []*modul.Log, addressMap []*modul.Address) {
 	fmt.Println("blockGoroup start：", block.Number)
 	resBlock, err := json.Marshal(block)
 	if err != nil {

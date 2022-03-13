@@ -2,8 +2,8 @@ package service
 
 import (
 	"context"
-	"ethernum/blockee"
 	"ethernum/filepath"
+	"ethernum/modul"
 	ut_tool "ethernum/tool"
 	"fmt"
 	"github.com/ethereum/go-ethereum/core/types"
@@ -66,13 +66,13 @@ func BlockGoroup(number *big.Int) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	block := blockee.NewBlock()
+	block := modul.NewBlock()
 	block.Block1(block1, client)
 
-	txlog := blockee.NewLog()
+	txlog := modul.NewLog()
 	txlogs := txlog.Logs(block1.Transactions(), block1.Time(), client)
 
-	address := blockee.NewAddress()
+	address := modul.NewAddress()
 	addressMap := address.AddressStatus(block1, client)
 
 	start := time.Now() // 获取当前时间

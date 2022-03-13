@@ -1,4 +1,4 @@
-package blockee
+package modul
 
 import (
 	"context"
@@ -72,7 +72,7 @@ func (ercToken *ERCToken) ERCToken(log *types.Log, client *ethclient.Client, top
 			//log.Println("event err:", err)
 			fmt.Println("event err:", err)
 		}
-		//ercToken := blockee.ERCToken{}
+		//ercToken := modul.ERCToken{}
 		if len(event) > 0 {
 			//	"value:", event[0], "contractAddr:", v.Address, "TXhash:", tx.Hash())
 			var vl *big.Int

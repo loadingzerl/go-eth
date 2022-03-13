@@ -1,10 +1,10 @@
 package filepath
 
 const (
-	BlockChainPath     string = "/home/loading/goProject/src/ethrealtime/blockchain"
-	BlockChainLogsPath string = "/home/loading/goProject/src/ethrealtime/blockchainlogs"
-	BlockChainDataPath string = "/home/loading/goProject/src/ethrealtime/blockchain/"
-	BlockChainAddressPath     string = "/home/loading/goProject/src/ethrealtime/addressstatus"
+	BlockChainPath        string = "/home/loading/goProject/src/go-eth/ethrealtime/blockchain"
+	BlockChainLogsPath    string = "/home/loading/goProject/src/go-eth/ethrealtime/blockchainlogs"
+	BlockChainDataPath    string = "/home/loading/goProject/src/go-eth/ethrealtime/blockchain/"
+	BlockChainAddressPath string = "/home/loading/goProject/src/go-eth/ethrealtime/addressstatus"
 
 	//BlockChainPath     string = "/meta/apri/ethblockdata"
 	//BlockChainLogsPath string = "/meta/apri/etherc20blockdata"

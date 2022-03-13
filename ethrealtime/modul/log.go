@@ -1,4 +1,4 @@
-package blockee
+package modul
 
 import (
 	"context"
@@ -99,8 +99,8 @@ func (l *Log) Logs(txs types.Transactions, time uint64, client *ethclient.Client
 			}
 
 			if receipt != nil {
-				//txlog := blockee.Log{}
-				//erc20Tokens := make([]blockee.ERC20Token, 0)
+				//txlog := modul.Log{}
+				//erc20Tokens := make([]modul.ERC20Token, 0)
 				//日志为空，to为空，交易成功
 				if (receipt.Logs == nil || len(receipt.Logs) == 0) && tx.To() == nil && receipt.Status == 1 {
 					txlog := CreatorContractLog(receipt.BlockNumber, receipt.BlockHash, tx, receipt, time, client)
