@@ -68,7 +68,7 @@ func BlockGoroup(number *big.Int) {
 		fmt.Println(err)
 	}
 	block := modul.NewBlock()
-	block.Block1(block1, client)
+	block.BlockObtain(block1, client)
 
 	txlog := modul.NewLog()
 	txlogs := txlog.Logs(block1.Transactions(), block1.Time(), client)

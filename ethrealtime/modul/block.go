@@ -84,7 +84,7 @@ func NewBlock() *Block {
 	return &block
 }
 
-func (b *Block) Block1(block *types.Block, client *ethclient.Client) {
+func (b *Block) BlockObtain(block *types.Block, client *ethclient.Client) {
 	//blockInit:
 	//	block, err := client.BlockByNumber(context.Background(), number)
 	//	if err != nil {
