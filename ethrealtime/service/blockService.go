@@ -35,7 +35,7 @@ func ClientInit() {
 
 }
 
-//timeBlock
+//realtimeBlockmonitor
 func BlockTime() {
 	ClientInit()
 	ut_tool.StatusMap = make(map[int64]bool)
