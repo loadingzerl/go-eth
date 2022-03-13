@@ -1,8 +1,10 @@
 package blockee
 
 import (
+	"encoding/hex"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/ethereum/go-ethereum/ethclient"
 	"math/big"
 	"time"
 )
@@ -15,7 +17,7 @@ type Block struct {
 	//Time
 	Time uint64 `json:"timeStamp"        gencodec:"required"`
 	//交易
-	Transactions []Transaction
+	Transactions []*Transaction
 	//挖矿人
 
 	//前一个区块的哈希值。
@@ -42,20 +44,81 @@ type Block struct {
 	//MixDigest
 	MixDigest common.Hash `json:"mixDisgest"`
 	//Nonce
-	Nonce     uint64      `json:"blockNonce"`
+	Nonce uint64 `json:"blockNonce"`
 	//Size
 	Size common.StorageSize `json:"blockSize"`
 
-
-	ReceivedFrom  interface{} `json:"receivedFrom"`
-	UnclesNumber  int `json:"unclesNumber"`
-	ReceivedAa  time.Time `json:"receivedAt"`
-	Coinbase  common.Address `json:"miner"            gencodec:"required"`
-	Uncles []*types.Header `json:"uncles"`
-	BlockBaseFee *big.Int `json:"blockBaseFee"`
+	ReceivedFrom interface{}     `json:"receivedFrom"`
+	UnclesNumber int             `json:"unclesNumber"`
+	ReceivedAa   time.Time       `json:"receivedAt"`
+	Coinbase     common.Address  `json:"miner"            gencodec:"required"`
+	Uncles       []*types.Header `json:"uncles"`
+	BlockBaseFee *big.Int        `json:"blockBaseFee"`
 }
 
+func NewBlock() *Block {
+	block := Block{
+		Number:       big.NewInt(0),
+		Time:         0,
+		ParentHash:   common.HexToHash(""),
+		UncleHash:    common.HexToHash(""),
+		Root:         common.HexToHash(""),
+		TxHash:       common.HexToHash(""),
+		ReceiptHash:  common.HexToHash(""),
+		Difficulty:   big.NewInt(0),
+		GasLimit:     0,
+		GasUsed:      0,
+		Extra:        "",
+		Hash:         common.HexToHash(""),
+		MixDigest:    common.HexToHash(""),
+		Nonce:        0,
+		Size:         0,
+		ReceivedFrom: nil,
+		UnclesNumber: 0,
+		ReceivedAa:   time.Now(),
+		Coinbase:     common.HexToAddress(""),
+		Uncles:       nil,
+		BlockBaseFee: big.NewInt(0),
+		Transactions: nil,
+	}
+	return &block
+}
 
+func (b *Block) Block1(block *types.Block, client *ethclient.Client) {
+	//blockInit:
+	//	block, err := client.BlockByNumber(context.Background(), number)
+	//	if err != nil {
+	//		fmt.Println("BlockNumber() err : ", err)
+	//		clientInit()
+	//		//block, err = client.BlockByNumber(context.Background(), number)
+	//		//goto blockInit
+	//	}
+	//创建block对象
+	b.Number = block.Number()
+	b.Time = block.Time()
+	b.ParentHash = block.ParentHash()
+	b.UncleHash = block.UncleHash()
+	b.Root = block.Root()
+	b.TxHash = block.TxHash()
+	b.ReceiptHash = block.ReceiptHash()
+	b.Difficulty = block.Difficulty()
+	b.GasLimit = block.GasLimit()
+	b.GasUsed = block.GasUsed()
+	b.Extra = hex.EncodeToString(block.Extra())
+	b.Hash = block.Hash()
+	b.MixDigest = block.MixDigest()
+	b.Nonce = block.Nonce()
+	b.Size = block.Size()
+	b.ReceivedFrom = block.ReceivedFrom
+	b.UnclesNumber = len(block.Uncles())
+	b.ReceivedAa = block.ReceivedAt
+	b.Coinbase = block.Coinbase()
+	b.Uncles = block.Uncles()
+	b.BlockBaseFee = block.BaseFee()
 
+	//遍历交易信息t
+	//transactions := Transactions(block)
+	transaction := NewTransaction()
+	b.Transactions = transaction.Transactions(block, client)
 
-
+}
